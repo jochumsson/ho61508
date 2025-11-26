@@ -1,0 +1,9 @@
+Optional.of(http://example.org/HO61508)
+http://example.org/HO61508#Harm,742.3284940214498,286.0817513565248
+http://purl.org/nemo/gufo#Endurant,589.1697591905383,-52.6604816189232
+http://example.org/HO61508#Hazard,507.3395183810768,168.1697591905384
+http://example.org/HO61508#HazardousSituation,716.0795427634396,163.44751415254728
+http://example.org/HO61508#HarmfulEvent,489.86721420288086,287.3713207244873
+http://example.org/HO61508#HazardousEvent,570.0,62.0
+http://example.org/HO61508#HazardSource,385.0,61.0
+http://example.org/HO61508#Exposed,785.5866951268652,63.332490665665006

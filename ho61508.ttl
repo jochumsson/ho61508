@@ -1,0 +1,153 @@
+@prefix ho61508: <http://example.org/HO61508#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://example.org/HO61508> rdf:type owl:Ontology ;
+    owl:imports <https://purl.org/nemo/gufo> .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/HO61508#inheresIn
+ho61508:inheresIn rdf:type owl:ObjectProperty ;
+    rdfs:domain ho61508:Hazard ;
+    rdfs:range ho61508:HazardSource ;
+    rdfs:comment "Relates a Hazard disposition to its HazardSource (the disposition bearer), as in HO61508." .
+
+###  http://example.org/HO61508#manifestsIn
+ho61508:manifestsIn rdf:type owl:ObjectProperty ;
+    rdfs:domain ho61508:Hazard ;
+    rdfs:range ho61508:HarmfulEvent ;
+    rdfs:comment "Relates a Hazard disposition to the HarmfulEvent in which it is manifested." .
+
+###  http://example.org/HO61508#exposes
+ho61508:exposes rdf:type owl:ObjectProperty ;
+    rdfs:domain ho61508:HazardousSituation ;
+    rdfs:range ho61508:Exposed ;
+    rdfs:comment "HazardousSituation exposes ufo kind playing the role Exposed (the entities that are exposed in the situation)." .
+
+###  http://example.org/HO61508#involves
+ho61508:involves rdf:type owl:ObjectProperty ;
+    rdfs:domain ho61508:HazardousSituation ;
+    rdfs:range ho61508:Hazard ;
+    rdfs:comment "HazardousSituation INVOLVES Hazard (the hazard(s) present in the situation)." .
+
+###  http://example.org/HO61508#triggers
+ho61508:triggers rdf:type owl:ObjectProperty ;
+    rdfs:domain ho61508:HazardousEvent ;
+    rdfs:range ho61508:Hazard ;
+    rdfs:comment "Relates a HazardousEvent to the Hazard whose manifestation it may trigger." .
+
+### http://example.org/ho61508#resultsIn
+ho61508:resultsIn rdf:type owl:ObjectProperty ;
+    rdfs:domain ho61508:HazardousEvent ;
+    rdfs:range ho61508:HazardousSituation ;
+    rdfs:comment """A HazardousEvent results in a HazardousSituation.
+This expresses the causal progression in IEC 61508: an initiating hazardous event may bring about
+a situation in which exposed entities are subject to one or more hazards.""" .
+
+### http://example.org/ho61508#leadsTo
+ho61508:leadsTo rdf:type owl:ObjectProperty ;
+    rdfs:domain ho61508:HarmfulEvent ;
+    rdfs:range ho61508:HazardousSituation ;
+    rdfs:comment """A HarmfulEvent may result in a new HazardousSituation.
+This captures hazard propagation described in the article: the manifestation of a hazard may create
+a new situation in which exposed entities are again subject to hazards.""" .
+
+### http://example.org/ho61508#causes
+ho61508:causes rdf:type owl:ObjectProperty ;
+    rdfs:domain ho61508:HarmfulEvent ;
+    rdfs:range ho61508:Harm ;
+    rdfs:comment """A HarmfulEvent causes Harm.
+Harm is defined in IEC 61508 as physical injury, health damage, or damage to property/environment.
+This relation captures the mandatory outcome of a harmful event.""" .
+
+###  http://example.org/HO61508#enables
+ho61508:enables rdf:type owl:ObjectProperty ;
+    rdfs:domain ho61508:HazardousSituation ;
+    rdfs:range ho61508:HazardousEvent ;
+    rdfs:comment "Relates a HazardousSituation to a HazardousEvent that it enables in the causal chain." .
+
+
+#################################################################
+#    Classes (HO61508 core)
+#################################################################
+
+###  http://example.org/HO61508#Hazard
+ho61508:Hazard rdf:type owl:Class ;
+              rdfs:subClassOf gufo:Disposition ;
+              rdfs:comment """Potential source of harm [IEC 61508]
+
+Defined as a ufo:Disposition: An "intrinsic moment" that may not be constantly manifested, but has the potential to be manifested when specific "triggering conditions" are met [Guizzardi 2005].""" .
+
+
+###  http://example.org/HO61508#HazardSource
+ho61508:HazardSource rdf:type owl:Class ;
+    rdfs:subClassOf 
+        gufo:Role ,
+		
+		# Is played by endurant
+        [ rdf:type owl:Restriction ;
+          owl:onProperty gufo:isPlayedBy ;
+          owl:someValuesFrom gufo:Endurant
+        ] ;
+    rdfs:comment """A HazardSource is a ufo:Role played by a gufo:Endurant that bears a Hazard (Disposition), e.g. a component, system, or structure serving as the source of a potential harm.""" .
+
+
+###  http://example.org/HO61508#HazardousEvent
+ho61508:HazardousEvent rdf:type owl:Class ;
+                      rdfs:subClassOf gufo:Event ;
+                      rdfs:comment """Event that may result in harm [IEC 61508]
+
+Defined as a ufo:Event, semantically capturing the triggering event(s) that may activate a Hazard disposition.""" .
+
+###  http://example.org/HO61508#HazardousSituation
+ho61508:HazardousSituation rdf:type owl:Class ;
+    rdfs:subClassOf 
+        gufo:Situation ,
+        
+        # Must involve at least one Hazard
+        [ rdf:type owl:Restriction ;
+          owl:onProperty ho61508:involves ;
+          owl:someValuesFrom ho61508:Hazard
+        ] ,
+
+        # Must expose at least one entity playing the Exposed role
+        [ rdf:type owl:Restriction ;
+          owl:onProperty ho61508:exposes ;
+          owl:someValuesFrom ho61508:Exposed
+        ] ;
+        
+    rdfs:comment """Circumstance in which one or more Exposed entities 
+are subjected to one or more Hazards [IEC 61508].
+
+Defined as a ufo:Situation characterized by at least one Exposed 
+role player and at least one involved Hazard.""" .
+
+###  http://example.org/HO61508#Exposed
+ho61508:Exposed rdf:type owl:Class ;
+               rdfs:subClassOf gufo:Role ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty gufo:isPlayedBy ;
+                                 owl:someValuesFrom gufo:Endurant
+                               ] ;
+               rdfs:comment "A role played by an entity exposed in a HazardousSituation. This role must be played by a gufo:Endurant." .
+
+###  http://example.org/HO61508#Harm
+ho61508:Harm rdf:type owl:Class ;
+            rdfs:subClassOf gufo:Situation ;
+            rdfs:comment """Physical injury or damage to the health of people or damage to property or the environment [IEC 61508].
+
+Modelled as a ufo:Situation that results from a HarmfulEvent.""" .
+	
+###  http://example.org/HO61508#HarmfulEvent
+ho61508:HarmfulEvent rdf:type owl:Class ;
+                    rdfs:subClassOf gufo:Event ,
+						[ rdf:type owl:Restriction ;
+							owl:onProperty ho61508:causes ;
+							owl:someValuesFrom ho61508:Harm
+						] ;
+                    rdfs:comment "Occurrence in which a hazardous situation or hazardous event results in harm [IEC 61508]." .
