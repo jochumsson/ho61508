@@ -1,11 +1,11 @@
-@prefix ho61508: <https://purl.org/nemo/ho61508#> .
-@prefix gufo:    <https://purl.org/nemo/gufo#> . 
+@prefix ho61508: <https://w3id.org/jochumsson/ho61508#> .
+@prefix gufo:    <https://purl.org/nemo/gufo#> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 
-<https://purl.org/nemo/ho61508> 
-    rdf:type    owl:Ontology ;
+<https://w3id.org/jochumsson/ho61508>
+    rdf:type owl:Ontology ;
     owl:imports <https://purl.org/nemo/gufo> .
     
 
@@ -13,42 +13,42 @@
 #    Object Properties
 #################################################################
 
-###  https://purl.org/nemo/ho61508#inheresIn
+###  https://w3id.org/jochumsson/ho61508#inheresIn
 ho61508:inheresIn 
     rdf:type      owl:ObjectProperty ;
     rdfs:domain   ho61508:Hazard ;
     rdfs:range    ho61508:HazardSource ;
     rdfs:comment "Relates a Hazard disposition to its HazardSource (the disposition bearer), as in HO61508." .
 
-###  https://purl.org/nemo/ho61508#manifestsIn
+###  https://w3id.org/jochumsson/ho61508#manifestsIn
 ho61508:manifestsIn
     rdf:type      owl:ObjectProperty ;
     rdfs:domain   ho61508:Hazard ;
     rdfs:range    ho61508:HarmfulEvent ;
     rdfs:comment "Relates a Hazard disposition to the HarmfulEvent in which it is manifested." .
 
-###  https://purl.org/nemo/ho61508#exposes
+###  https://w3id.org/jochumsson/ho61508#exposes
 ho61508:exposes
     rdf:type      owl:ObjectProperty ;
     rdfs:domain   ho61508:HazardousSituation ;
     rdfs:range    ho61508:Exposed ;
     rdfs:comment "HazardousSituation exposes a ufo:Kind playing the role Exposed (the entities that are exposed in the situation)." .
 
-###  https://purl.org/nemo/ho61508#involves
+###  https://w3id.org/jochumsson/ho61508#involves
 ho61508:involves
     rdf:type      owl:ObjectProperty ;
     rdfs:domain   ho61508:HazardousSituation ;
     rdfs:range    ho61508:Hazard ;
     rdfs:comment "HazardousSituation involves Hazard (the hazard(s) present in the situation)." .
 
-###  https://purl.org/nemo/ho61508#triggers
+###  https://w3id.org/jochumsson/ho61508#triggers
 ho61508:triggers
     rdf:type      owl:ObjectProperty ;
     rdfs:domain   ho61508:HazardousEvent ;
     rdfs:range    ho61508:Hazard ;
     rdfs:comment "Relates a HazardousEvent to the Hazard whose manifestation it may trigger." .
 
-###  https://purl.org/nemo/ho61508#resultsIn
+###  https://w3id.org/jochumsson/ho61508#resultsIn
 ho61508:resultsIn
     rdf:type      owl:ObjectProperty ;
     rdfs:domain   ho61508:HazardousEvent ;
@@ -56,7 +56,7 @@ ho61508:resultsIn
     rdfs:comment """A HazardousEvent results in a HazardousSituation.
 This expresses the causal progression in IEC 61508: an initiating hazardous event may bring about a situation in which exposed entities are subject to one or more hazards.""" .
 
-###  https://purl.org/nemo/ho61508#leadsTo
+###  https://w3id.org/jochumsson/ho61508#leadsTo
 ho61508:leadsTo
     rdf:type      owl:ObjectProperty ;
     rdfs:domain   ho61508:HarmfulEvent ;
@@ -64,7 +64,7 @@ ho61508:leadsTo
     rdfs:comment """A HarmfulEvent may result in a new HazardousSituation.
 This captures hazard propagation described in the article: the manifestation of a hazard may create a new situation in which exposed entities are again subject to hazards.""" .
 
-###  https://purl.org/nemo/ho61508#causes
+###  https://w3id.org/jochumsson/ho61508#causes
 ho61508:causes
     rdf:type      owl:ObjectProperty ;
     rdfs:domain   ho61508:HarmfulEvent ;
@@ -73,7 +73,7 @@ ho61508:causes
 Harm is defined in IEC 61508 as physical injury, health damage, or damage to property/environment.
 This relation captures the mandatory outcome of a harmful event.""" .
 
-###  https://purl.org/nemo/ho61508#enables
+###  https://w3id.org/jochumsson/ho61508#enables
 ho61508:enables
     rdf:type      owl:ObjectProperty ;
     rdfs:domain   ho61508:HazardousSituation ;
@@ -85,7 +85,7 @@ ho61508:enables
 #    Classes (HO61508 core)
 #################################################################
 
-###  https://purl.org/nemo/ho61508#Hazard
+###  https://w3id.org/jochumsson/ho61508#Hazard
 ho61508:Hazard
     rdf:type      owl:Class ;
     rdfs:subClassOf gufo:Disposition ;
@@ -93,7 +93,7 @@ ho61508:Hazard
 
 Defined as a ufo:Disposition: An 'intrinsic moment' that may not be constantly manifested, but has the potential to be manifested when specific triggering conditions are met [Guizzardi 2005].""" .
 
-###  https://purl.org/nemo/ho61508#HazardSource
+###  https://w3id.org/jochumsson/ho61508#HazardSource
 ho61508:HazardSource
     rdf:type      owl:Class ;
     rdfs:subClassOf 
@@ -104,7 +104,7 @@ ho61508:HazardSource
         ] ;
     rdfs:comment """A HazardSource is a ufo:Role played by a gufo:Endurant that bears a Hazard (Disposition), e.g. a component, system, or structure serving as the source of a potential harm.""" .
 
-###  https://purl.org/nemo/ho61508#HazardousEvent
+###  https://w3id.org/jochumsson/ho61508#HazardousEvent
 ho61508:HazardousEvent
     rdf:type      owl:Class ;
     rdfs:subClassOf gufo:Event ;
@@ -112,7 +112,7 @@ ho61508:HazardousEvent
 
 Defined as a ufo:Event, semantically capturing the triggering event(s) that may activate a Hazard disposition.""" .
 
-###  https://purl.org/nemo/ho61508#HazardousSituation
+###  https://w3id.org/jochumsson/ho61508#HazardousSituation
 ho61508:HazardousSituation
     rdf:type      owl:Class ;
     rdfs:subClassOf 
@@ -129,7 +129,7 @@ ho61508:HazardousSituation
 
 Defined as a ufo:Situation characterized by at least one Exposed role player and at least one involved Hazard.""" .
 
-###  https://purl.org/nemo/ho61508#Exposed
+###  https://w3id.org/jochumsson/ho61508#Exposed
 ho61508:Exposed
     rdf:type      owl:Class ;
     rdfs:subClassOf 
@@ -140,7 +140,7 @@ ho61508:Exposed
         ] ;
     rdfs:comment "A role played by an entity exposed in a HazardousSituation. This role must be played by a gufo:Endurant." .
 
-###  https://purl.org/nemo/ho61508#Harm
+###  https://w3id.org/jochumsson/ho61508#Harm
 ho61508:Harm
     rdf:type      owl:Class ;
     rdfs:subClassOf gufo:Situation ;
@@ -148,7 +148,7 @@ ho61508:Harm
 
 Modelled as a ufo:Situation that results from a HarmfulEvent.""" .
 
-###  https://purl.org/nemo/ho61508#HarmfulEvent
+###  https://w3id.org/jochumsson/ho61508#HarmfulEvent
 ho61508:HarmfulEvent
     rdf:type      owl:Class ;
     rdfs:subClassOf 
