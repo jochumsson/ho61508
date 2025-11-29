@@ -54,7 +54,7 @@ ho61508:resultsIn
     rdfs:domain   ho61508:HazardousEvent ;
     rdfs:range    ho61508:HazardousSituation ;
     rdfs:comment """A HazardousEvent results in a HazardousSituation.
-This expresses the causal progression in IEC 61508: an initiating hazardous event may bring about a situation in which exposed entities are subject to one or more hazards.""" .
+This expresses the causal progression in IEC 61508: an hazardous event may bring about a situation in which exposed entities are subject to one or more hazards.""" .
 
 ###  https://w3id.org/jochumsson/ho61508#leadsTo
 ho61508:leadsTo
