@@ -80,6 +80,17 @@ ho61508:enables
     rdfs:range    ho61508:HazardousEvent ;
     rdfs:comment "Relates a HazardousSituation to a HazardousEvent that it enables in the causal chain." .
 
+###  https://w3id.org/jochumsson/ho61508#carriedBy
+ho61508:carriedBy a owl:ObjectProperty ;
+    rdfs:domain ho61508:HazardSource ;
+    rdfs:range gufo:Endurant ;
+    rdfs:comment "The endurant that carries the HazardSource role." .
+	
+###  https://w3id.org/jochumsson/ho61508#affectedBy	
+ho61508:affectedBy a owl:ObjectProperty ;
+    rdfs:domain ho61508:Exposed ;
+    rdfs:range gufo:Endurant ;
+    rdfs:comment "The endurant that is affected by hazardous situation and plays the Exposed role." .	
 
 #################################################################
 #    Classes (HO61508 core)
@@ -98,8 +109,8 @@ ho61508:HazardSource
     rdf:type      owl:Class ;
     rdfs:subClassOf 
         gufo:Role ,
-        [ rdf:type            owl:Restriction ;
-          owl:onProperty     gufo:isPlayedBy ;
+        [ rdf:type           owl:Restriction ;
+          owl:onProperty     ho61508:carriedBy ;
           owl:someValuesFrom gufo:Endurant
         ] ;
     rdfs:comment """A HazardSource is a ufo:Role played by a gufo:Endurant that bears a Hazard (Disposition), e.g. a component, system, or structure serving as the source of a potential harm.""" .
@@ -135,7 +146,7 @@ ho61508:Exposed
     rdfs:subClassOf 
         gufo:Role ,
         [ rdf:type            owl:Restriction ;
-          owl:onProperty     gufo:isPlayedBy ;
+          owl:onProperty     ho61508:affectedBy ;
           owl:someValuesFrom gufo:Endurant
         ] ;
     rdfs:comment "A role played by an entity exposed in a HazardousSituation. This role must be played by a gufo:Endurant." .
