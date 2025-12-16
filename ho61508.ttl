@@ -3,6 +3,7 @@
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: 	 <http://www.w3.org/2001/XMLSchema#> .
 
 <https://w3id.org/jochumsson/ho61508>
     rdf:type owl:Ontology ;
@@ -19,6 +20,14 @@ ho61508:inheresIn
     rdfs:domain   ho61508:Hazard ;
     rdfs:range    ho61508:HazardSource ;
     rdfs:comment "Relates a Hazard disposition to its HazardSource (the disposition bearer), as in HO61508." .
+	
+###  https://w3id.org/jochumsson/ho61508#inheres
+ho61508:inheres
+    rdf:type      owl:ObjectProperty ;
+    owl:inverseOf ho61508:inheresIn ;
+    rdfs:domain   ho61508:HazardSource ;
+    rdfs:range    ho61508:Hazard ;
+    rdfs:comment "Relates a HazardSource to the Hazard dispositions that inhere in it." .
 
 ###  https://w3id.org/jochumsson/ho61508#manifestsIn
 ho61508:manifestsIn
@@ -27,6 +36,14 @@ ho61508:manifestsIn
     rdfs:range    ho61508:HarmfulEvent ;
     rdfs:comment "Relates a Hazard disposition to the HarmfulEvent in which it is manifested." .
 
+###  https://w3id.org/jochumsson/ho61508#manifestedBy
+ho61508:manifestedBy
+    rdf:type      owl:ObjectProperty ;
+    owl:inverseOf ho61508:manifestsIn ;
+    rdfs:domain   ho61508:HarmfulEvent ;
+    rdfs:range    ho61508:Hazard ;
+    rdfs:comment "Relates a HarmfulEvent to the Hazard whose manifestation it is." .
+	
 ###  https://w3id.org/jochumsson/ho61508#exposes
 ho61508:exposes
     rdf:type      owl:ObjectProperty ;
@@ -73,6 +90,14 @@ ho61508:causes
 Harm is defined in IEC 61508 as physical injury, health damage, or damage to property/environment.
 This relation captures the mandatory outcome of a harmful event.""" .
 
+###  https://w3id.org/jochumsson/ho61508#causedBy
+ho61508:causedBy
+    rdf:type      owl:ObjectProperty ;
+    owl:inverseOf ho61508:causes ;
+    rdfs:domain   ho61508:Harm ;
+    rdfs:range    ho61508:HarmfulEvent ;
+    rdfs:comment "Relates Harm to the HarmfulEvent that caused it." .
+
 ###  https://w3id.org/jochumsson/ho61508#enables
 ho61508:enables
     rdf:type      owl:ObjectProperty ;
@@ -99,9 +124,14 @@ ho61508:affectedBy a owl:ObjectProperty ;
 ###  https://w3id.org/jochumsson/ho61508#Hazard
 ho61508:Hazard
     rdf:type      owl:Class ;
-    rdfs:subClassOf gufo:Disposition ;
+    rdfs:subClassOf 
+        gufo:Disposition ,
+        [ rdf:type                  owl:Restriction ;
+          owl:onProperty           ho61508:inheresIn ;
+          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+          owl:onClass              ho61508:HazardSource
+        ] ;
     rdfs:comment """Potential source of harm [IEC 61508]
-
 Defined as a ufo:Disposition: An 'intrinsic moment' that may not be constantly manifested, but has the potential to be manifested when specific triggering conditions are met [Guizzardi 2005].""" .
 
 ###  https://w3id.org/jochumsson/ho61508#HazardSource
@@ -112,15 +142,19 @@ ho61508:HazardSource
         [ rdf:type           owl:Restriction ;
           owl:onProperty     ho61508:carriedBy ;
           owl:someValuesFrom gufo:Endurant
+        ] ,
+        [ rdf:type           owl:Restriction ;
+          owl:onProperty     ho61508:inheres ;
+          owl:someValuesFrom ho61508:Hazard
         ] ;
     rdfs:comment """A HazardSource is a ufo:Role played by a gufo:Endurant that bears a Hazard (Disposition), e.g. a component, system, or structure serving as the source of a potential harm.""" .
+
 
 ###  https://w3id.org/jochumsson/ho61508#HazardousEvent
 ho61508:HazardousEvent
     rdf:type      owl:Class ;
     rdfs:subClassOf gufo:Event ;
     rdfs:comment """Event that may result in harm [IEC 61508]
-
 Defined as a ufo:Event, semantically capturing the triggering event(s) that may activate a Hazard disposition.""" .
 
 ###  https://w3id.org/jochumsson/ho61508#HazardousSituation
@@ -137,7 +171,6 @@ ho61508:HazardousSituation
           owl:someValuesFrom ho61508:Exposed
         ] ;
     rdfs:comment """Circumstance in which one or more Exposed entities are subjected to one or more Hazards [IEC 61508].
-
 Defined as a ufo:Situation characterized by at least one Exposed role player and at least one involved Hazard.""" .
 
 ###  https://w3id.org/jochumsson/ho61508#Exposed
@@ -154,9 +187,13 @@ ho61508:Exposed
 ###  https://w3id.org/jochumsson/ho61508#Harm
 ho61508:Harm
     rdf:type      owl:Class ;
-    rdfs:subClassOf gufo:Situation ;
+    rdfs:subClassOf 
+        gufo:Situation ,
+        [ rdf:type            owl:Restriction ;
+          owl:onProperty     ho61508:causedBy ;
+          owl:someValuesFrom ho61508:HarmfulEvent
+        ] ;
     rdfs:comment """Physical injury or damage to the health of people or damage to property or the environment [IEC 61508].
-
 Modelled as a ufo:Situation that results from a HarmfulEvent.""" .
 
 ###  https://w3id.org/jochumsson/ho61508#HarmfulEvent
@@ -167,5 +204,9 @@ ho61508:HarmfulEvent
         [ rdf:type            owl:Restriction ;
           owl:onProperty     ho61508:causes ;
           owl:someValuesFrom ho61508:Harm
+        ] ,
+        [ rdf:type            owl:Restriction ;
+          owl:onProperty     ho61508:manifestedBy ;
+          owl:someValuesFrom ho61508:Hazard
         ] ;
     rdfs:comment "Occurrence in which a hazardous situation or hazardous event results in harm [IEC 61508]." .
