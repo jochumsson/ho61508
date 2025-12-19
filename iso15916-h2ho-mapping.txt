@@ -1,0 +1,312 @@
+INTRODUCTION
+This document maps the safety concepts presented in ISO 15916 to the HO61508/H2HO ontologies.
+Due to copyright restrictions, no ISO text is reproduced; each chapter is represented only through
+its ontological implications and conceptual alignment.
+
+======================================================================
+1 — SCOPE
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+No ontology impact. No hazard phenomena introduced.
+
+======================================================================
+2 — NORMATIVE REFERENCES
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+No ontology impact. No domain concepts to model.
+
+======================================================================
+3 — TERMS AND DEFINITIONS
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+All relevant definitions (deflagration, detonation, ignition, etc.) are already represented through:
+ho61508:HarmfulEvent
+  - h2ho:Combustion
+      - h2ho:Fire
+      - h2ho:Explosion
+ho61508:HazardousEvent
+  - h2ho:Ignition
+  - h2ho:HydrogenRelease
+
+No further hazard concepts
+
+======================================================================
+4 — SYMBOLS AND UNITS
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+Not ontologically relevant.
+
+======================================================================
+5 — BASIC CONSIDERATIONS
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+General hydrogen behaviour (dispersion, buoyancy, flammability) is already captured by:
+ho61508:Hazard
+  - h2ho:FlammabilityHazard
+  - h2ho:PressureHazard
+  - h2ho:OxygenDeficiencyHazard
+ho61508:HarmfulEvent
+  - h2ho:PressureWave (caused by h2ho:Explosion, h2ho:Detonation, FastDeflagration)
+
+
+ho61508:HazardousSituation
+  - h2ho:ExplosiveAtmosphere
+
+No event sequences. Descriptive only.
+
+======================================================================
+6.2 — GENERAL HYDROGEN PROPERTIES
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+ho61508:Hazard
+  - h2ho:FlammabilityHazard
+  - h2ho:PressureHazard
+  - h2ho:OxygenDeficiencyHazard
+
+ho61508:HazardousSituation
+  - h2ho:ExplosiveAtmosphere
+
+No event sequences.
+
+======================================================================
+6.2.3 — LIQUID HYDROGEN LEAKAGE
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+ho61508:Hazard
+  - h2ho:PressureHazard
+  - h2ho:FlammabilityHazard
+
+ho61508:HazardSource
+  - h2ho:LH2Storage
+  - h2ho:Piping
+  - h2ho:ProcessEquipment
+      - h2ho:Valve
+
+ho61508:HazardousEvent
+  - h2ho:LossOfFunction
+      - h2ho:PipePlug
+      - h2ho:ValveJam
+      - h2ho:Cryopumping
+      - h2ho:LeakOfAir
+      - h2ho:LossOfContainment
+          - h2ho:HydrogenRelease
+              - h2ho:Rupture
+
+ho61508:HazardousSituation
+  - h2ho:LiquidHydrogenExposure
+  - h2ho:CryogenicMaterialDegradation
+  - h2ho:OxygenEnrichment
+  - h2ho:Overpressure
+
+ho61508:HarmfulEvent
+  - h2ho:Combustion
+      - h2ho:Fireball
+      - h2ho:PoolFire
+      - h2ho:Detonation
+
+EVENT SEQUENCES
+Scenario:
+LeakOfAir → LiquidHydrogenExposure → CryogenicMaterialDegradation → PipePlug → LossOfContainment → HydrogenRelease → ExplosiveAtmosphere → Ignition → Fireball
+
+Scenario:
+Cryopumping → LiquidHydrogenExposure → CryogenicMaterialDegradation → ValveJam → LossOfContainment → Rupture → HydrogenRelease → ExplosiveAtmosphere → Ignition → Detonation
+
+Scenario:
+CryogenicMaterialDegradation → Overpressure → LossOfContainment → Rupture → HydrogenRelease → ExplosiveAtmosphere → Ignition → FastDeflagration
+
+Scenario:
+OxygenEnrichment → Ignition → PoolFire
+
+======================================================================
+6.3.1 — ASPECTS OF COMBUSTION
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+ho61508:HazardSource
+  - h2ho:Electrolyser
+  - h2ho:FuelCell
+
+ho61508:Hazard
+  - h2ho:FlammabilityHazard
+
+ho61508:HazardousEvent
+  - h2ho:HydrogenRelease
+  - h2ho:Ignition
+      - h2ho:FlameIgnition
+      - h2ho:HotSurfaceIgnition
+      - h2ho:FrictionIgnition
+      - h2ho:StaticSparkIgnition
+  - h2ho:Malfunction
+
+ho61508:HazardousSituation
+  - h2ho:ExplosiveAtmosphere
+
+ho61508:HarmfulEvent
+  - h2ho:Combustion
+      - h2ho:Fire
+          - h2ho:JetFire
+          - h2ho:PoolFire
+          - h2ho:Fireball
+      - h2ho:Explosion
+          - h2ho:Deflagration
+          - h2ho:Detonation
+
+EVENT SEQUENCES
+Scenario:
+HydrogenRelease → ExplosiveAtmosphere → FlameIgnition → JetFire
+
+Scenario:
+Malfunction → ExplosiveAtmosphere → Ignition → Detonation
+
+======================================================================
+6.3.2 — NON-PREMIXED AND PREMIXED COMBUSTION MODES
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+ho61508:HarmfulEvent
+  - h2ho:Combustion
+      - h2ho:Fire (non-premixed)
+          - h2ho:JetFire
+          - h2ho:PoolFire
+      - h2ho:Explosion (premixed)
+          - h2ho:Deflagration
+          - h2ho:Detonation
+
+NOTES
+ISO distinction “non-premixed vs premixed” corresponds to H2HO:Fire vs H2HO:Explosion.
+Fully covered by existing classes.
+
+EVENT SEQUENCES
+Scenario:
+HydrogenRelease → FlameIgnition → JetFire
+
+Scenario:
+HydrogenRelease → ExplosiveAtmosphere → Ignition → Deflagration
+
+======================================================================
+6.3.3 — EXPLOSION BEHAVIOUR
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+ho61508:HarmfulEvent
+  - h2ho:Explosion
+      - h2ho:Deflagration
+      - h2ho:Detonation
+
+ho61508:HazardousSituation
+  - h2ho:Overpressure
+  - h2ho:TurbulentMixture
+
+ho61508:HazardousEvent
+  - h2ho:FlameAcceleration
+
+EVENT SEQUENCES
+Scenario:
+Deflagration → Overpressure → Explosion
+
+======================================================================
+6.3.3.2 — DEFLAGRATION-TO-DETONATION TRANSITION (DDT)
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+ho61508:HazardousSituation
+  - h2ho:TurbulentMixture
+
+EVENT SEQUENCE (DDT)
+HydrogenRelease → ExplosiveAtmosphere → Ignition → Deflagration → TurbulentMixture → FlameAcceleration → Detonation
+
+======================================================================
+6.3.3.4 — SAFETY CONSIDERATIONS FOR COMBUSTION AND DETONATION
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+ho61508:Hazard
+  - h2ho:PressureHazard
+  - h2ho:ThermalHazard   (covers thermal radiation)
+
+ho61508:HazardousSituation
+  - h2ho:Overpressure
+  - h2ho:ExplosiveAtmosphere
+
+ho61508:HazardSource
+  - h2ho:EnvironmentalConfinement
+
+EVENT SEQUENCES
+Scenario:
+FastDeflagration → Overpressure → Damage
+
+======================================================================
+6.4 — PRESSURE EFFECTS FROM COMBUSTION
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+ho61508:Hazard
+  - h2ho:PressureHazard
+
+ho61508:HazardousSituation
+  - h2ho:Overpressure
+
+EVENT SEQUENCES
+Scenario:
+Detonation → Overpressure → Damage
+
+======================================================================
+6.5 — LOW TEMPERATURE HAZARDS
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+ho61508:Hazard
+  - h2ho:ThermalHazard
+
+ho61508:HarmfulEvent
+  - h2ho:CryogenicExposureEvent
+
+ho61508:Harm
+  - h2ho:CryoBurn
+
+EVENT SEQUENCES
+Scenario:
+LiquidHydrogenExposure → CryogenicExposureEvent → CryoBurn
+
+======================================================================
+6.6 — MATERIAL COMPATIBILITY AND EMBRITTLEMENT
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+ho61508:HazardousSituation
+  - h2ho:MaterialDegradation
+  - h2ho:CryogenicMaterialDegradation
+
+RESULTS
+MaterialDegradation → LossOfFunction
+MaterialDegradation → LossOfContainment
+
+======================================================================
+6.7 — HEALTH EFFECTS
+======================================================================
+Description: (Content not shown due to license restrictions.)
+
+ho61508:Harm
+  - h2ho:Injury
+  - h2ho:CryoBurn
+  - h2ho:Asphyxiation
+  - h2ho:Death
+
+ho61508:HarmfulEvent
+  - h2ho:HeatExposureEvent
+  - h2ho:CryogenicExposureEvent
+  - h2ho:ToxicExposureEvent
+
+EVENT SEQUENCES
+Scenario:
+OxygenDeficiencyHazard → ExposureEvent → Asphyxiation
+
+Scenario:
+ThermalHazard → HeatExposureEvent → Injury
