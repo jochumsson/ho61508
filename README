@@ -1,0 +1,27 @@
+Title: HO61508 and H2HO Ontologies
+
+Overview
+
+HO61508: A modular hazard ontology aligned with IEC 61508 (hazard analysis phase).
+H2HO: A hydrogen-specific extension of HO61508, semantically aligned with ISO 15916.
+See the paper for detailed concepts, design rationale, and evaluation.
+Repository contents
+
+ho61508.ttl — Hazard Ontology 61508 (HO61508).
+ho61508-overview.graph — Overview graph for HO61508.
+h2ho.ttl — Hydrogen Hazard Ontology (H2HO) extending HO61508.
+h2ho-overview.graph — Overview graph for H2HO.
+iso15916-h2ho-mapping.txt — Mapping notes from ISO 15916 terminology to H2HO.
+LICENSE — CC BY 4.0 license.
+How to use
+
+Open ho61508.ttl and h2ho.ttl in your RDF/OWL tool (e.g., Protégé).
+Use them as a base for domain-specific hazard models; see the mapping file for ISO 15916 alignment.
+For background and examples, consult the paper.
+License
+
+Unless otherwise noted, all files are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).
+Please attribute: “Thorvaldur Jochumsson (2025). HO61508 and H2HO ontologies.”
+Citation
+
+If you use these ontologies, please cite the paper: “A Modular Hazard Ontology Based on IEC 61508” (Jochumsson et al., ESREL 2026).
