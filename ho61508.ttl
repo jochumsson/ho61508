@@ -1,14 +1,26 @@
-@prefix ho61508: <https://w3id.org/jochumsson/ho61508#> .
-@prefix gufo:    <https://purl.org/nemo/gufo#> .
-@prefix owl:     <http://www.w3.org/2002/07/owl#> .
-@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: 	 <http://www.w3.org/2001/XMLSchema#> .
+@prefix ho61508: https://w3id.org/jochumsson/ho61508# .
+@prefix gufo:    https://purl.org/nemo/gufo# .
+@prefix owl:     http://www.w3.org/2002/07/owl# .
+@prefix rdf:     http://www.w3.org/1999/02/22-rdf-syntax-ns# .
+@prefix rdfs:    http://www.w3.org/2000/01/rdf-schema# .
+@prefix dcterms: http://purl.org/dc/terms/ .
+@prefix xsd:     http://www.w3.org/2001/XMLSchema# .
 
-<https://w3id.org/jochumsson/ho61508>
-    rdf:type owl:Ontology ;
-    owl:imports <https://purl.org/nemo/gufo> .
-    
+https://w3id.org/jochumsson/ho61508
+a owl:Ontology ;
+dcterms:title "Hazard Ontology 61508 (HO61508)"@en ;
+rdfs:comment "A modular hazard ontology aligned with IEC 61508 (hazard analysis phase)."@en ;
+dcterms:creator "Thorvaldur Jochumsson" ;
+dcterms:contributor "Kaj Hänninen" ;
+dcterms:contributor "Mehrdad Saadatmand" ;
+dcterms:contributor "Kristina Lundqvist" ;
+dcterms:license https://creativecommons.org/licenses/by/4.0/ ;
+rdfs:seeAlso https://github.com/jochumsson/ho61508 ;
+owl:versionInfo "1.0.0" ;
+owl:versionIRI https://w3id.org/jochumsson/ho61508/1.0.0 ;
+dcterms:issued "2025-12-19"xsd:date ;
+dcterms:modified "2025-12-19"xsd:date ;
+owl:imports https://purl.org/nemo/gufo .
 
 #################################################################
 #    Object Properties
