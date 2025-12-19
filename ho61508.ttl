@@ -6,7 +6,7 @@
 @prefix dcterms: http://purl.org/dc/terms/ .
 @prefix xsd:     http://www.w3.org/2001/XMLSchema# .
 
-https://w3id.org/jochumsson/ho61508
+<https://w3id.org/jochumsson/ho61508>
 a owl:Ontology ;
 dcterms:title "Hazard Ontology 61508 (HO61508)"@en ;
 rdfs:comment "A modular hazard ontology aligned with IEC 61508 (hazard analysis phase)."@en ;
