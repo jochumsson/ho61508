@@ -1,18 +1,28 @@
-@prefix h2ho:    <https://w3id.org/jochumsson/h2ho#> .
-@prefix ho61508: <https://w3id.org/jochumsson/ho61508#> .
-@prefix gufo:    <https://purl.org/nemo/gufo#> .
-@prefix owl:     <http://www.w3.org/2002/07/owl#> .
-@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix h2ho:    https://w3id.org/jochumsson/h2ho# .
+@prefix ho61508: https://w3id.org/jochumsson/ho61508# .
+@prefix gufo:    https://purl.org/nemo/gufo# .
+@prefix owl:     http://www.w3.org/2002/07/owl# .
+@prefix rdf:     http://www.w3.org/1999/02/22-rdf-syntax-ns# .
+@prefix rdfs:    http://www.w3.org/2000/01/rdf-schema# .
+@prefix dcterms: http://purl.org/dc/terms/ .
+@prefix xsd:     http://www.w3.org/2001/XMLSchema# .
 
 <https://w3id.org/jochumsson/h2ho>
-    rdf:type owl:Ontology ;
-    owl:imports <https://w3id.org/jochumsson/ho61508> ;
-    owl:imports <https://purl.org/nemo/gufo> ;
-    rdfs:comment """Hydrogen Safety Ontology (H2HO).
-A domain-specific extension of HO61508 following the modular structure
-described in 'A Modular Hazard Ontology Based on IEC 61508'.""" .
-
+a owl:Ontology ;
+dcterms:title "Hydrogen Hazard Ontology (H2HO)"@en ;
+rdfs:comment "Hydrogen Safety Ontology (H2HO). A domain-specific extension of HO61508 following the modular structure described in 'A Modular Hazard Ontology Based on IEC 61508'."@en ;
+dcterms:creator "Thorvaldur Jochumsson" ;
+dcterms:contributor "Kaj Hänninen" ;
+dcterms:contributor "Mehrdad Saadatmand" ;
+dcterms:contributor "Kristina Lundqvist" ;
+dcterms:license https://creativecommons.org/licenses/by/4.0/ ;
+rdfs:seeAlso https://github.com/jochumsson/ho61508 ;
+dcterms:source "ISO 15916:2015 – Basic considerations for the safety of hydrogen systems."@en ;
+owl:imports https://w3id.org/jochumsson/ho61508/1.0.0 ;
+owl:versionInfo "1.0.0" ;
+owl:versionIRI https://w3id.org/jochumsson/h2ho/1.0.0 ;
+dcterms:issued "2025-12-19"xsd:date ;
+dcterms:modified "2025-12-19"xsd:date .
 
 #################################################################
 # H2HO ho61508:HazardSource specialisations
