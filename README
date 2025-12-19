@@ -3,7 +3,7 @@ Title: HO61508 and H2HO Ontologies
 Overview
 
 HO61508: A modular hazard ontology aligned with IEC 61508 (hazard analysis phase).
-H2HO: A hydrogen-specific extension of HO61508, semantically aligned with ISO 15916.
+H2HO: A hydrogen-specific extension of HO61508, conceptually aligned with ISO 15916.
 See the paper for detailed concepts, design rationale, and evaluation.
 Repository contents
 
