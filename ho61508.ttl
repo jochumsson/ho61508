@@ -122,6 +122,13 @@ ho61508:carriedBy a owl:ObjectProperty ;
     rdfs:domain ho61508:HazardSource ;
     rdfs:range gufo:Endurant ;
     rdfs:comment "The endurant that carries the HazardSource role." .
+
+### https://w3id.org/jochumsson/ho61508#carries
+ho61508:carries a owl:ObjectProperty ;
+    owl:inverseOf ho61508:carriedBy ;
+    rdfs:domain gufo:Endurant ;
+    rdfs:range ho61508:HazardSource ;
+    rdfs:comment "Relates an endurant to the HazardSource role it carries." .
 	
 ###  https://w3id.org/jochumsson/ho61508#affectedBy	
 ho61508:affectedBy a owl:ObjectProperty ;
