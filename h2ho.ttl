@@ -93,10 +93,6 @@ h2ho:ExternalEvent rdf:type owl:Class ;
     rdfs:subClassOf ho61508:HazardousEvent ;
     rdfs:comment "Hazardous event external to the hydrogen system (for example impact, earthquake, lightning) that may initiate or escalate an accident scenario." .
 
-h2ho:FlameAcceleration rdf:type owl:Class ;
-    rdfs:subClassOf ho61508:HazardousEvent ;
-    rdfs:comment "Intermediate event where flame speed increases due to confinement, congestion, or turbulence." .
-
 #################################################################
 # H2HO ho61508:HazardousSituation specialisations
 #################################################################
