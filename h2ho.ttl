@@ -19,10 +19,10 @@
   rdfs:seeAlso <https://github.com/jochumsson/ho61508> ;
   dcterms:source "ISO 15916:2015 – Basic considerations for the safety of hydrogen systems."@en ;
   owl:imports <https://w3id.org/jochumsson/ho61508> ;
-  owl:versionInfo "1.0.2" ;
-  owl:versionIRI <https://w3id.org/jochumsson/h2ho/1.0.1> ;
-  dcterms:issued "2026-01-08"^^xsd:date ;
-  dcterms:modified "2026-01-08"^^xsd:date .
+  owl:versionInfo "1.0.3" ;
+  owl:versionIRI <https://w3id.org/jochumsson/h2ho/1.0.3> ;
+  dcterms:issued "2026-01-20"^^xsd:date ;
+  dcterms:modified "2026-01-20"^^xsd:date .
 
 #################################################################
 # H2HO ho61508:HazardSource specialisations
