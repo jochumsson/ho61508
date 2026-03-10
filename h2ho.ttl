@@ -21,8 +21,8 @@
   owl:imports <https://w3id.org/jochumsson/ho61508> ;
   owl:versionInfo "1.0.4" ;
   owl:versionIRI <https://w3id.org/jochumsson/h2ho/1.0.4> ;
-  dcterms:issued "2026-03-08"^^xsd:date ;
-  dcterms:modified "2026-03-08"^^xsd:date .
+  dcterms:issued "2026-03-10"^^xsd:date ;
+  dcterms:modified "2026-03-10"^^xsd:date .
 
 #################################################################
 # H2HO ho61508:HazardSource specialisations

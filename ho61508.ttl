@@ -16,10 +16,10 @@
   dcterms:contributor "Kristina Lundqvist" ;
   dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
   rdfs:seeAlso <https://github.com/jochumsson/ho61508> ;
-  owl:versionInfo "1.0.1" ;
-  owl:versionIRI <https://w3id.org/jochumsson/ho61508/1.0.1> ;
-  dcterms:issued "2025-12-20"^^xsd:date ;
-  dcterms:modified "2025-12-20"^^xsd:date ;
+  owl:versionInfo "1.0.2" ;
+  owl:versionIRI <https://w3id.org/jochumsson/ho61508/1.0.2> ;
+  dcterms:issued "2026-03-10"^^xsd:date ;
+  dcterms:modified "2026-03-10"^^xsd:date ;
   owl:imports <https://purl.org/nemo/gufo> .
 
 #################################################################
