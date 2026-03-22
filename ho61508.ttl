@@ -191,7 +191,7 @@ ho61508:Exposed
     rdfs:subClassOf 
         gufo:Role ,
         [ rdf:type            owl:Restriction ;
-          owl:onProperty     ho61508:affectedBy ;
+          owl:onProperty     ho61508:affectes ;
           owl:someValuesFrom gufo:Endurant
         ] ;
     rdfs:comment "A role played by an entity exposed in a HazardousSituation. This role must be played by a gufo:Endurant." .
