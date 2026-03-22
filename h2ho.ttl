@@ -126,17 +126,17 @@ h2ho:MaterialDegradation rdf:type owl:Class ;
 # H2HO ho61508:Exposed specialisation
 #################################################################
 
-h2ho:Person rdf:type owl:Class ;
-    rdfs:subClassOf gufo:Endurant ;
-    rdfs:comment "A human being who may play the role of Exposed in a HazardousSituation." .
+h2ho:ExposedPerson rdf:type owl:Class ;
+    rdfs:subClassOf ho61508:Exposed ;
+    rdfs:comment "A role specialisation for exposed human beings." .
 
-h2ho:Property rdf:type owl:Class ;
-    rdfs:subClassOf gufo:Endurant ;
-    rdfs:comment "A physical object or structure of value that may play the role of Exposed in a HazardousSituation." .
+h2ho:ExposedProperty rdf:type owl:Class ;
+    rdfs:subClassOf ho61508:Exposed ;
+    rdfs:comment "A role specialisation for exposed properties or structures." .
 
-h2ho:Environment rdf:type owl:Class ;
-    rdfs:subClassOf gufo:Endurant ;
-    rdfs:comment "A environmental object or structure that may play the role of Exposed in a HazardousSituation." .
+h2ho:ExposedEnvironment rdf:type owl:Class ;
+    rdfs:subClassOf ho61508:Exposed ;
+    rdfs:comment "A role specialisation for exposed environmental objects or structures." .
 
 #################################################################
 # H2HO ho61508:HarmfulEvent specialisations

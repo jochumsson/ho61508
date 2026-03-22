@@ -61,7 +61,7 @@ ho61508:exposes
     rdf:type      owl:ObjectProperty ;
     rdfs:domain   ho61508:HazardousSituation ;
     rdfs:range    ho61508:Exposed ;
-    rdfs:comment "HazardousSituation exposes a ufo:Kind playing the role Exposed (the entities that are exposed in the situation)." .
+    rdfs:comment "HazardousSituation exposes entities playing the role Exposed." .
 
 ###  https://w3id.org/jochumsson/ho61508#involves
 ho61508:involves
